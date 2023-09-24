@@ -1,20 +1,30 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-module.exports = {
-  entry: "./src/js/index.js", // Your entry point for JavaScript
+const config = {
+  entry: { main: ["./src/js/index.js", "./src/sass/main.scss"] },
+
   output: {
-    filename: "main.js", // Output JavaScript file name
-    path: path.resolve(__dirname, "dist"), // Output directory
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].min.js",
   },
+  devtool: "source-map",
+
   module: {
     rules: [
       {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      {
         test: /\.js$/,
+        use: "babel-loader",
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader", // Add Babel for ES6+ support
-        },
       },
     ],
   },
+  plugins: [new MiniCssExtractPlugin()],
+  watch: true,
 };
+
+module.exports = config;

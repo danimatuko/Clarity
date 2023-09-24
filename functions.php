@@ -1,6 +1,14 @@
 <?php
-class MyTheme {
-    // Constructor method to initialize theme setup
+
+/**
+ * Class Starter
+ *
+ * This class handles the setup and functionality of the theme.
+ */
+class Starter {
+    /**
+     * Constructor method to initialize theme setup
+     */
     public function __construct() {
         add_action('after_setup_theme', array($this, 'theme_setup'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
@@ -8,37 +16,48 @@ class MyTheme {
         add_action('widgets_init', array($this, 'register_widget_areas'));
     }
 
-    // Theme setup
+    /**
+     * Theme setup
+     *
+     * Add support for title tags and post thumbnails, and register navigation menus.
+     */
     public function theme_setup() {
-        // Add support for title tags
         add_theme_support('title-tag');
-
-        // Add support for post thumbnails
         add_theme_support('post-thumbnails');
 
-        // Register navigation menus
         register_nav_menus(array(
             'primary-menu' => esc_html__('Primary Menu', 'your-theme-textdomain'),
             // Add more menu locations as needed
         ));
     }
 
-    // Enqueue styles
+    /**
+     * Enqueue styles
+     *
+     * Enqueue the theme's stylesheets.
+     */
     public function enqueue_styles() {
         wp_enqueue_style('my-theme-style', get_stylesheet_uri());
-        // You can enqueue additional styles here
-        // wp_enqueue_style('custom-style', get_template_directory_uri() . '/css/custom.css', array(), '1.0');
+        wp_enqueue_style('custom-style', get_template_directory_uri() . '/dist/main.css', array(), '1.0');
     }
 
-    // Enqueue scripts
+    /**
+     * Enqueue scripts
+     *
+     * Enqueue JavaScript files as needed.
+     */
     public function enqueue_scripts() {
-        // Enqueue JavaScript files as needed
         // wp_enqueue_script('my-theme-script', get_template_directory_uri() . '/js/my-script.js', array('jquery'), '1.0', true);
+        wp_enqueue_script('theme-scripts', get_template_directory_uri() . '/dist/main.min.js', array('jquery'), '1.0', true);
+        // wp_enqueue_style('theme-styles', get_template_directory_uri() . '/dist/main.css', array(), '1.0');
     }
 
-    // Register widget areas
+    /**
+     * Register widget areas
+     *
+     * Register the sidebar widget area.
+     */
     public function register_widget_areas() {
-        // Register sidebar widget area
         register_sidebar(array(
             'name' => esc_html__('Sidebar Widget Area', 'your-theme-textdomain'),
             'id' => 'sidebar-widget-area',
@@ -51,5 +70,5 @@ class MyTheme {
     }
 }
 
-// Instantiate the MyTheme class
-$my_theme = new MyTheme();
+// Instantiate the Starter class
+$my_theme = new Starter();
