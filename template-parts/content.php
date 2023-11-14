@@ -9,16 +9,16 @@
         ?>
 
         <?php if ('post' === get_post_type()) : ?>
-        <div class="entry-meta">
-            <span class="posted-on">
-                <?php
+            <div class="entry-meta">
+                <span class="posted-on">
+                    <?php
                     printf(
                         esc_html__('Posted on %s', 'your-theme-textdomain'),
                         '<a href="' . esc_url(get_permalink()) . '">' . esc_html(get_the_date()) . '</a>'
                     );
                     ?>
-            </span>
-        </div>
+                </span>
+            </div>
         <?php endif; ?>
     </header>
 

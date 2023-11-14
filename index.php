@@ -8,7 +8,6 @@
 
 get_header(); // Include header.php
 ?>
-
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <?php

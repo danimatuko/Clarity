@@ -21,6 +21,6 @@
             ));
             ?>
         </nav>
-        <h1 class="site-title"><?php bloginfo('name'); ?></h1>
+        <h1 class="site-title hero"><?php bloginfo('name'); ?></h1>
         <p class="site-description"><?php bloginfo('description'); ?></p>
     </header>

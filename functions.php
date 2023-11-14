@@ -5,11 +5,13 @@
  *
  * This class handles the setup and functionality of the theme.
  */
-class Starter {
+class Starter
+{
     /**
      * Constructor method to initialize theme setup
      */
-    public function __construct() {
+    public function __construct()
+    {
         add_action('after_setup_theme', array($this, 'theme_setup'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
@@ -21,7 +23,8 @@ class Starter {
      *
      * Add support for title tags and post thumbnails, and register navigation menus.
      */
-    public function theme_setup() {
+    public function theme_setup()
+    {
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
 
@@ -36,9 +39,11 @@ class Starter {
      *
      * Enqueue the theme's stylesheets.
      */
-    public function enqueue_styles() {
+    public function enqueue_styles()
+    {
         wp_enqueue_style('my-theme-style', get_stylesheet_uri());
         wp_enqueue_style('custom-style', get_template_directory_uri() . '/dist/main.css', array(), '1.0');
+        wp_enqueue_style('tailwind-style', get_template_directory_uri() . '/dist/styles.css', array(), '1.0');
     }
 
     /**
@@ -46,7 +51,8 @@ class Starter {
      *
      * Enqueue JavaScript files as needed.
      */
-    public function enqueue_scripts() {
+    public function enqueue_scripts()
+    {
         // wp_enqueue_script('my-theme-script', get_template_directory_uri() . '/js/my-script.js', array('jquery'), '1.0', true);
         wp_enqueue_script('theme-scripts', get_template_directory_uri() . '/dist/main.min.js', array('jquery'), '1.0', true);
         // wp_enqueue_style('theme-styles', get_template_directory_uri() . '/dist/main.css', array(), '1.0');
@@ -57,7 +63,8 @@ class Starter {
      *
      * Register the sidebar widget area.
      */
-    public function register_widget_areas() {
+    public function register_widget_areas()
+    {
         register_sidebar(array(
             'name' => esc_html__('Sidebar Widget Area', 'your-theme-textdomain'),
             'id' => 'sidebar-widget-area',
